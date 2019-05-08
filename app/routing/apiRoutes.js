@@ -16,8 +16,13 @@ module.exports = function (app) {
 
         // combatibility logic goes here
 
-        console.log(req.body);
-        console.log(res);
+        //obviously I didn't have time to code the compatibility logic, but here's my pseudocode:
+
+        //use a for loop to iterate through friendsArray
+        //create an Array outside of for loop to take in compatibility values
+        //for each friend object, loop through scores array and find absolute value of difference from user score. Add to local variable compatibilityScore
+        //after finishing this inner loop, push compatibilityScore to compatibilityArray
+        //after both for loops have finished and each existing friend has a corresponding score in the compatibilityArray, compare those scores, lowest one is friend Match
 
     });
 }
