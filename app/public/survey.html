@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Friend Finder Survey</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="h1 text-center p-3 pt-4">Friend Finder</div>
+        <div class="h3">Assign a number 1-10 to each statement. The higher the number the more you agree.</div>
+        <hr>
+        <div class="h4">
+            1. Life is best lived full throttle.
+            <input type="number" name="quantity" id="question-1" min="1" max="10">
+
+        </div>
+        <hr>
+        <div class="h4">
+            2. I am happiest when when I am busiest.
+            <input type="number" name="quantity" id="question-2" min="1" max="10">
+
+        </div>
+        <hr>
+        <div class="h4">
+            3. People who chew loudly should be put down on the spot.
+            <input type="number" name="quantity" id="question-3" min="1" max="10">
+
+        </div>
+        <hr>
+        <div class="h4">
+            4. Baths > Showers.
+            <input type="number" name="quantity" id="question-4" min="1" max="10">
+
+        </div>
+        <hr>
+        <div class="h4">
+            5. Peeing with the door open is a better indicator of love than grand romantic gestures.
+            <input type="number" name="quantity" id="question-5" min="1" max="10">
+
+        </div>
+        <hr>
+        <div class="h4">
+            6. If you can raise a Tamagotchi, you can raise a child.
+            <input type="number" name="quantity" id="question-6" min="1" max="10">
+
+        </div>
+        <hr>
+        <div class="h4">
+            7. Don't speak to me before I've had my morning coffee.
+            <input type="number" name="quantity" id="question-7" min="1" max="10">
+
+        </div>
+        <hr>
+        <div class="h4">
+            8. Game of Thrones is just a glamorized, over-produced Lord of The Rings.
+            <input type="number" name="quantity" id="question-8" min="1" max="10">
+
+        </div>
+        <hr>
+        <div class="h4">
+            9. I will avoid public transportation at any cost.
+            <input type="number" name="quantity" id="question-9" min="1" max="10">
+
+        </div>
+        <hr>
+        <div class="h4">
+            10. I actually think this survey will help me find a friend.
+            <input type="number" name="quantity" id="question-10" min="1" max="10">
+
+        </div>
+        <hr>
+        <div class="h4">
+            Your Name:
+            <input class="mr-2" type="text" name="name" id="name">
+            <button type="submit" class="btn btn-primary p-2 px-4 submit">Submit</button>
+        </div>
+
+    </div>
+
+    <script>
+        $(".submit").on("click", function (event) {
+            event.preventDefault();
+
+            var newFriend = {
+                name: $("#name").val().trim(),
+                picture: "none",
+                scores: [
+                    $("#question-1").val(),
+                    $("#question-2").val(),
+                    $("#question-3").val(),
+                    $("#question-4").val(),
+                    $("#question-5").val(),
+                    $("#question-6").val(),
+                    $("#question-7").val(),
+                    $("#question-8").val(),
+                    $("#question-9").val(),
+                    $("#question-10").val()
+                ]
+            };
+
+            console.log(newFriend);
+
+            $.post("/api/friends", newFriend,
+                function (data) {
+                    console.log(data);
+                    // Clear the form when submitting
+                    $("#question-1").val('');
+                    $("#question-2").val('');
+                    $("#question-3").val('');
+                    $("#question-4").val('');
+                    $("#question-5").val('');
+                    $("#question-6").val('');
+                    $("#question-7").val('');
+                    $("#question-8").val('');
+                    $("#question-9").val('');
+                    $("#question-10").val('');
+                    $("#name").val('');
+
+                });
+
+        });
+    </script>
+
+
+
+
+
+</body>
